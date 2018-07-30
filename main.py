@@ -2,6 +2,8 @@ import webapp2
 import os
 import jinja2
 from math import sin, cos, sqrt, atan2, radians
+from stop_models import Stop
+from seed_stops_db import seed_data
 
 #this is in mph
 bus_speed = 26.4
@@ -38,7 +40,11 @@ class MainHandler(webapp2.RequestHandler):
 
 
 
+class LoadDataHandler(webapp2.RequestHandler):
+    def get(self):
+        seed_data()
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
+    ('/seed-data', LoadDataHandler)
 ], debug=True)
