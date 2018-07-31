@@ -1,6 +1,9 @@
-h1 {display:flex;
+h1 a
+{
+  display:flex;
   font-size: 45px;
   font-family: "Google Sans";
+  text-decoration: none;
 }
 
 #s, #p {color: cornflowerblue;}
