@@ -33,12 +33,8 @@ def find_time_to_stop(lat1, lng1, lat2, lng2):
 class MainHandler(webapp2.RequestHandler):
     def get(self):
         #self.response.write("Welcome to StopGo!")
-        welcome_template = jina_env.get_template('templates/main_page.html')
+        welcome_template = jina_env.get_template('templates/homepage.html')
         self.response.write(welcome_template.render())
-
-
-
-
 
 class LoadDataHandler(webapp2.RequestHandler):
     def get(self):
