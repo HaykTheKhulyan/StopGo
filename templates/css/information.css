@@ -1,0 +1,9 @@
+#blue {color: cornflowerblue;}
+#red{color:crimson;}
+
+h1
+{
+  display:flex;
+  font-size: 45px;
+  font-family: "Google Sans";
+}

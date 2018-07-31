@@ -41,12 +41,12 @@ class LoadDataHandler(webapp2.RequestHandler):
         seed_data()
 
 class CreateRouteHandler(webapp2.RequestHandler):
-    def post(self):
+    def get(self):
         create_route_template = jinja_env.get_template('templates/create_route.html')
         self.response.write(create_route_template.render())
 
 class InformationHandler(webapp2.RequestHandler):
-    def post(self):
+    def get(self):
         info_template = jinja_env.get_template('templates/information.html')
         self.response.write(info_template.render())
 

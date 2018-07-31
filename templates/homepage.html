@@ -3,26 +3,47 @@
 <head>
 <title>Welcome to StopGo!</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Google+Sans"/>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="css/homepage.css"/>
+<style>
+  form {
+  display: inline;
+  }
+  img {
+    width: 15%;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+  }
+</style>
 </head>
 
 <body>
   <img src="images/logo.png" alt="Quack Logo">
   <h1>
-    <b id="s">S</b>
-    <b id="t">t</b>
-    <b id="first-o">o</b>
-    <b id="p">p</b>
-    <b id="g">G</b>
-    <b id="second-o">o</b>
+    <a href='/'>
+      <b id="s">S</b>
+      <b id="t">t</b>
+      <b id="first-o">o</b>
+      <b id="p">p</b>
+      <b id="g">G</b>
+      <b id="second-o">o</b>
+    </a>
   </h1>
 
-  <form method='post' action="/">
-    <button type="submit">Home</button></form>
-  <form method='post' action="/create-route">
-    <button type="submit">Create Route</button></form>
-  <form method='post' action="/info">
-    <button type="submit">Information</button></form>
+  <div class="navbar">
+    <a href="/">Home</a>
+    <a href="/create-route">Create A Route</a>
+      <div class="dropdown">
+        <button class="dropbtn" onclick="myFunction()">About Us
+          <i class="fa fa-caret-down"></i>
+        </button>
+          <div class="dropdown-content" id="myDropdown">
+            <a href="/info">What is Quack?</a>
+            </div>
+      </div>
+  </div>
 
   <p>
     Making public transportation more efficient and convenient through notifying
@@ -30,11 +51,7 @@
     accidentally missing their stop due to sleep or other preoccupations.
   </p>
 
-</head>
 
-<body>
-  <img src="images/logo.png" alt="Quack Logo">
-</body>
 
 <style>
 
@@ -69,7 +86,20 @@
     border-width: thick;
     border-color: red;
   }
+}
+<script>
+/* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+    document.querySelector("#myDropdown").classList.toggle("show");
+}
 
-</style>
-
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(e) {
+  if (!e.target.matches('.dropbtn')) {
+    var myDropdown = document.querySelector("#myDropdown");
+      if (myDropdown.classList.contains('show')) {
+        myDropdown.classList.remove('show');
+      }
+</script>
 </html>
