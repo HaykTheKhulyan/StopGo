@@ -1,9 +1,21 @@
-
+#blue {color: cornflowerblue;}
 #yellow {color: #fa0;}
+#green
+{
+  color: seagreen;
+  display:flex;
+  font-family: "Google Sans";
+}
 
 h1
 {
   display:flex;
   font-size: 45px;
+  font-family: "Google Sans";
+}
+
+h2
+{
+  display:flex;
   font-family: "Google Sans";
 }

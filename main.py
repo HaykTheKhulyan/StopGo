@@ -45,6 +45,11 @@ class CreateRouteHandler(webapp2.RequestHandler):
         create_route_template = jinja_env.get_template('templates/create_route.html')
         self.response.write(create_route_template.render())
 
+class ViewRouteHandler(webapp2.RequestHandler):
+    def get(self):
+        view_route_template = jinja_env.get_template('templates/view_route.html')
+        self.response.write(view_route_template.render())
+
 class InformationHandler(webapp2.RequestHandler):
     def get(self):
         info_template = jinja_env.get_template('templates/information.html')
@@ -54,5 +59,6 @@ app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/seed-data', LoadDataHandler),
     ('/create-route', CreateRouteHandler),
+    ('/view-route', ViewRouteHandler),
     ('/info', InformationHandler),
 ], debug=True)
