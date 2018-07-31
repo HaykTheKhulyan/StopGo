@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>Welcome to StopGo!</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Google+Sans"/>
 <link rel="stylesheet" href="homepage.css" />
+</head>
 
+<body>
+  <img src="file:///Users/demouser/StopGo/logo.png" alt="Quack Logo">
   <h1>
     <b id="s">S</b>
     <b id="t">t</b>
@@ -13,11 +17,11 @@
     <b id="second-o">o</b>
   </h1>
 
-  <form action="file:///Users/demouser/StopGo/templates/homepage.html">
+  <form method='post' action="/">
     <button type="submit">Home</button></form>
-  <form action="file:///Users/demouser/StopGo/templates/create_route.html">
+  <form method='post' action="/create-route">
     <button type="submit">Create Route</button></form>
-  <form action="file:///Users/demouser/StopGo/templates/information.html">
+  <form method='post' action="/info">
     <button type="submit">Information</button></form>
 
   <p>
@@ -25,11 +29,6 @@
     the user of upcoming bus stops. This web application will prevent users from
     accidentally missing their stop due to sleep or other preoccupations.
   </p>
-
-</head>
-
-<body>
-  <img src="file:///Users/demouser/StopGo/logo.png" alt="Quack Logo">
 </body>
 
 <style>
@@ -42,6 +41,22 @@
     bottom: 0px;
     right: 0px;
   }
+  h1 {display:flex;
+    font-size: 45px;
+    font-family: "Google Sans";
+  }
+
+  #s, #p {color: cornflowerblue;}
+  #t, #second-o {color:red;}
+  #first-o {color: #fa0;}
+  #g {color:#3a3; -webkit-transform: rotate(-20deg);}
+
+  p {
+    background-color: tomato;
+    font-size: 24px;
+    font-family: serif;
+  }
+
 </style>
 
 </html>
