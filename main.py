@@ -35,7 +35,6 @@ class MainHandler(webapp2.RequestHandler):
         welcome_template = jinja_env.get_template('templates/homepage.html')
         self.response.write(welcome_template.render())
 
-
 class LoadDataHandler(webapp2.RequestHandler):
     def get(self):
         seed_data()
