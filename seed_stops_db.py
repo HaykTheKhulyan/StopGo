@@ -2,7 +2,7 @@ from stop_models import Stop
 import csv
 
 def seed_data():
-    with open('stops_test.txt') as csvfile:
+    with open('smaller_stops.txt') as csvfile:
          stopreader = csv.DictReader(csvfile)
          for row in stopreader:
              Stop(stop_id=row['stop_id'], stop_code=row['stop_code'], \
