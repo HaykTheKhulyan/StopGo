@@ -4,6 +4,9 @@ import jinja2
 from math import sin, cos, sqrt, atan2, radians
 from stop_models import Stop
 from seed_stops_db import seed_data
+from threading import Timer
+import logging
+
 
 #this is in mph
 bus_speed = 26.4
@@ -41,32 +44,18 @@ def find_time_to_stop(lat1, lng1, lat2, lng2):
     #multiplied by two since our model is ideal conditions
     return 2 * time_to_next_stop
 
+def hello():
+    print("hello, world")
+
+def send_message():
+    t = Timer(5.0, hello)
+    t.start()
+
 class StopSelectorHandler(webapp2.RequestHandler):
     def get(self):
         #self.response.write("Welcome to StopGo!")
         stop_selector_template = jina_env.get_template('templates/stop-selector.html')
         self.response.write(stop_selector_template.render())
-
-
-class TestingHandler(webapp2.RequestHandler):
-    def get(self):
-        testing_template = jina_env.get_template('templates/testing.html')
-
-        current_stop = self.request.get('current_stop')
-        next_stop = self.request.get('next_stop')
-
-        current_stop_lat = Stop.query().filter(Stop.stop_name == current_stop).fetch()[0].stop_lat
-        current_stop_lon = Stop.query().filter(Stop.stop_name == current_stop).fetch()[0].stop_lon
-
-        next_stop_lat = Stop.query().filter(Stop.stop_name == next_stop).fetch()[0].stop_lat
-        next_stop_lon = Stop.query().filter(Stop.stop_name == next_stop).fetch()[0].stop_lon
-
-        time_to_next_stop = find_time_to_stop(current_stop_lat, current_stop_lon, next_stop_lat, next_stop_lon)
-
-        template_vars = {
-            'time_to_next_stop': time_to_next_stop,
-        }
-        self.response.write(testing_template.render(template_vars))
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
@@ -85,7 +74,27 @@ class CreateRouteHandler(webapp2.RequestHandler):
 class ViewRouteHandler(webapp2.RequestHandler):
     def get(self):
         view_route_template = jinja_env.get_template('templates/view_route.html')
-        self.response.write(view_route_template.render())
+
+        current_stop = self.request.get('current_stop')
+        next_stop = self.request.get('next_stop')
+
+        current_stop_lat = Stop.query().filter(Stop.stop_name == current_stop).fetch()[0].stop_lat
+        current_stop_lon = Stop.query().filter(Stop.stop_name == current_stop).fetch()[0].stop_lon
+
+        next_stop_lat = Stop.query().filter(Stop.stop_name == next_stop).fetch()[0].stop_lat
+        next_stop_lon = Stop.query().filter(Stop.stop_name == next_stop).fetch()[0].stop_lon
+
+        time_to_next_stop = find_time_to_stop(current_stop_lat, current_stop_lon, next_stop_lat, next_stop_lon)
+
+        time_to_next_stop = float(int(time_to_next_stop * 10))
+        time_to_next_stop /=10
+
+        send_message()
+
+        template_vars = {
+            'time_to_next_stop': time_to_next_stop,
+        }
+        self.response.write(view_route_template.render(template_vars))
 
 class InformationHandler(webapp2.RequestHandler):
     def get(self):
