@@ -108,6 +108,7 @@ h1 {display:flex;
   background-color: lightblue;
   color: white;
   text-align: right;
+  height: 46px;
 }
 
 .logo {
