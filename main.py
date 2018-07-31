@@ -8,7 +8,7 @@ from seed_stops_db import seed_data
 #this is in mph
 bus_speed = 26.4
 
-jina_env = jinja2.Environment(
+jinja_env = jinja2.Environment(
 loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
 extensions=['jinja2.ext.autoescape'],
 autoescape=True)
@@ -68,30 +68,19 @@ class TestingHandler(webapp2.RequestHandler):
         }
         self.response.write(testing_template.render(template_vars))
 
+class MainHandler(webapp2.RequestHandler):
+    def get(self):
+        main_page_template = jinja_env.get_template('templates/homepage.html')
+        self.response.write(main_page_template.render(()))
+
 class LoadDataHandler(webapp2.RequestHandler):
     def get(self):
         seed_data()
 
 class CreateRouteHandler(webapp2.RequestHandler):
     def get(self):
-            testing_template = jina_env.get_template('templates/testing.html')
-
-            current_stop = self.request.get('current_stop')
-            next_stop = self.request.get('next_stop')
-
-            current_stop_lat = Stop.query().filter(Stop.stop_name == current_stop).fetch()[0].stop_lat
-            current_stop_lon = Stop.query().filter(Stop.stop_name == current_stop).fetch()[0].stop_lon
-
-            next_stop_lat = Stop.query().filter(Stop.stop_name == next_stop).fetch()[0].stop_lat
-            next_stop_lon = Stop.query().filter(Stop.stop_name == next_stop).fetch()[0].stop_lon
-
-            time_to_next_stop = find_time_to_stop(current_stop_lat, current_stop_lon, next_stop_lat, next_stop_lon)
-
-            template_vars = {
-                'time_to_next_stop': time_to_next_stop,
-            }
         create_route_template = jinja_env.get_template('templates/create_route.html')
-        self.response.write(create_route_template.render(template_vars))
+        self.response.write(create_route_template.render(()))
 
 class ViewRouteHandler(webapp2.RequestHandler):
     def get(self):
