@@ -11,7 +11,7 @@ h1 a
 #first-o {color: #fa0;}
 #g {color:#3a3; -webkit-transform: rotate(-20deg);}
 
-p {
+.overview {
   font-size: 35px;
   padding: 50px;
   text-align: center;
@@ -83,4 +83,16 @@ p {
 
 .show {
     display: block;
+}
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: lightblue;
+  color: white;
+  text-align: right;
+}
+.logo {
+  width: 10%;
+  bottom: 0;
 }
