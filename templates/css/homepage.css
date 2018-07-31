@@ -85,7 +85,6 @@ h1 a
 .show {
     display: block;
 }
-<<<<<<< HEAD
 
 form {
 display: inline;
@@ -100,7 +99,8 @@ img {
 h1 {display:flex;
   font-size: 45px;
   font-family: "Google Sans";
-=======
+}
+
 .footer {
   position: fixed;
   bottom: 0;
@@ -109,8 +109,8 @@ h1 {display:flex;
   color: white;
   text-align: right;
 }
+
 .logo {
   width: 10%;
   bottom: 0;
->>>>>>> 4321d50b18384f806f5d705372680697923bd2df
 }
