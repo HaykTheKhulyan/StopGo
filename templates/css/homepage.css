@@ -17,6 +17,7 @@ h1 a
   text-align: center;
   line-height: 200%;
   border-radius: 25px;
+
   border-style: solid;
   border-width: thick;
   border-color: red;
@@ -84,6 +85,22 @@ h1 a
 .show {
     display: block;
 }
+<<<<<<< HEAD
+
+form {
+display: inline;
+}
+img {
+  width: 15%;
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+}
+
+h1 {display:flex;
+  font-size: 45px;
+  font-family: "Google Sans";
+=======
 .footer {
   position: fixed;
   bottom: 0;
@@ -95,4 +112,5 @@ h1 a
 .logo {
   width: 10%;
   bottom: 0;
+>>>>>>> 4321d50b18384f806f5d705372680697923bd2df
 }

@@ -4,6 +4,8 @@
 <title>Welcome to StopGo!</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Google+Sans"/>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="initial-scale=1.0">
+<meta charset="utf-8">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="css/homepage.css"/>
 <style>
@@ -71,7 +73,7 @@
   #t, #second-o {color:red;}
   #first-o {color: #fa0;}
   #g {color:#3a3; -webkit-transform: rotate(-20deg);}
-
+</style>
 <script>
 /* When the user clicks on the button,
 toggle between hiding and showing the dropdown content */
@@ -79,12 +81,14 @@ function myFunction() {
     document.querySelector("#myDropdown").classList.toggle("show");
 }
 
-// Close the dropdown if the user clicks outside of it
+/* Close the dropdown if the user clicks outside of it*/
 window.onclick = function(e) {
   if (!e.target.matches('.dropbtn')) {
     var myDropdown = document.querySelector("#myDropdown");
       if (myDropdown.classList.contains('show')) {
         myDropdown.classList.remove('show');
       }
+  }
+}
 </script>
 </html>
