@@ -11,18 +11,18 @@ h1 a
 #first-o {color: #fa0;}
 #g {color:#3a3; -webkit-transform: rotate(-20deg);}
 
-p {
-  background-color: tomato;
-  font-size: 24px;
-  font-family: serif;
-  padding: 100px;
-  border-radius: 25px;
+.overview {
+  font-size: 35px;
+  padding: 50px;
   text-align: center;
-  letter-spacing: 5px;
+  line-height: 200%;
+  border-radius: 25px;
+
   border-style: solid;
   border-width: thick;
   border-color: red;
 }
+
 
 .navbar {
     overflow: hidden;
@@ -85,6 +85,7 @@ p {
 .show {
     display: block;
 }
+<<<<<<< HEAD
 
 form {
 display: inline;
@@ -99,4 +100,17 @@ img {
 h1 {display:flex;
   font-size: 45px;
   font-family: "Google Sans";
+=======
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: lightblue;
+  color: white;
+  text-align: right;
+}
+.logo {
+  width: 10%;
+  bottom: 0;
+>>>>>>> 4321d50b18384f806f5d705372680697923bd2df
 }
