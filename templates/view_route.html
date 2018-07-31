@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="css/homepage.css"/>
-<link rel="stylesheet" href="css/create_route.css"/>
+<link rel="stylesheet" href="css/view_route.css"/>
 <style>
   form {
   display: inline;
@@ -47,21 +47,11 @@
   </div>
 
   <h1>
-    <b id='yellow'>Create A Route</b>
+    <b id='green'>View Route</b>
   </h1>
 
-  <h2>
-    <b id='blue'>Please select your stops</b>
-  </h2>
   <p>
-    <form action='/view-route' method='get'>
-      <b id='green'>Enter your first stop:</b>
-      <input type="text" name="current_stop"/>
-      <br>
-      <b id='green'>Enter your second stop:</b>
-      <input type="text" name="next_stop"/>
-      <input type="submit" value="Go!">
-    </form>
+    Time to next stop: {{time_to_next_stop}} minutes
   </p>
 
 <script>
