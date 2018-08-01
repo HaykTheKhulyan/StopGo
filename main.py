@@ -6,7 +6,7 @@ import datetime
 from math import sin, cos, sqrt, atan2, radians
 from stop_models import Stop
 from notification_models import Notification
-from seed_stops_db import seed_data
+#from seed_stops_db import seed_data
 from twilio.rest import Client
 
 
