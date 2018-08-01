@@ -12,7 +12,7 @@ from twilio.rest import Client
 
 my_file = open("app-secrets.json")
 my_secret = my_file.read()
-SECRETS_DICT = json.loads(secrets)
+SECRETS_DICT = json.loads(my_secret)
 my_file.close()
 
 #this is in mph
@@ -52,8 +52,8 @@ def find_time_to_stop(lat1, lng1, lat2, lng2):
     return 2 * time_to_next_stop
 
 def SendNotification(Notification):
-    account_sid = SECRETS-DICT['twilio_account_sid'] #"AC2a6cae5a5d3b26c7fbbb57fc327469f4"
-    auth_token  = SECRETS-DICT['twilio_auth_token']  #"d81a3d84605d75cef24f70649577a4bb"
+    account_sid = SECRETS-DICT['twilio_account_sid']
+    auth_token  = SECRETS-DICT['twilio_auth_token']  
 
     client = Client(account_sid, auth_token)
 
@@ -96,7 +96,7 @@ class ViewRouteHandler(webapp2.RequestHandler):
         time_to_next_stop = float(int(time_to_next_stop * 10))
         time_to_next_stop /=10
 
-        notification = Notification(target_time = datetime.datetime.now() + datetime.timedelta(minutes=time_to_next_stop), stop_name = next_stop, sent = False).put()
+        notification = Notification(target_time = datetime.datetime.now() + datetime.timedelta(minutes=time_to_next_stop), stop_name = next_stop).put()
 
         template_vars = {
             'time_to_next_stop': time_to_next_stop,
