@@ -11,7 +11,7 @@ import datetime
 
 my_file = open("app-secrets.json")
 my_secret = my_file.read()
-SECRETS_DICT = json.loads(secrets)
+SECRETS_DICT = json.loads(my_secret)
 my_file.close()
 
 #this is in mph
