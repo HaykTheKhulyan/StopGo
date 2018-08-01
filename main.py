@@ -45,6 +45,9 @@ def find_time_to_stop(lat1, lng1, lat2, lng2):
     #multiplied by two since our model is ideal conditions
     return 2 * time_to_next_stop
 
+def SendNotification(notification):
+    
+
 class MainHandler(webapp2.RequestHandler):
     def get(self):
         main_page_template = jinja_env.get_template('templates/homepage.html')
