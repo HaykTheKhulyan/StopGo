@@ -59,9 +59,10 @@ def SendNotification(Notification):
     message = client.messages.create(
         to="+12136047704",
         from_="+14243583569",
-        body="The %s stop is coming up!" % Notification.stop_name)
+        body="The stop is coming up!")
 
     print(message.sid)
+    return True
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
@@ -95,7 +96,7 @@ class ViewRouteHandler(webapp2.RequestHandler):
         time_to_next_stop = float(int(time_to_next_stop * 10))
         time_to_next_stop /=10
 
-        notification = Notification(target_time = datetime.datetime.now() + datetime.timedelta(minutes=time_to_next_stop), stop_name = next_stop, sent = False).put()
+        notification = Notification(target_time = datetime.datetime.now() + datetime.timedelta(minutes=time_to_next_stop), stop_name = next_stop).put()
 
         template_vars = {
             'time_to_next_stop': time_to_next_stop,
