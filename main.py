@@ -1,9 +1,15 @@
 import webapp2
 import os
 import jinja2
+import json
 from math import sin, cos, sqrt, atan2, radians
 from stop_models import Stop
 from seed_stops_db import seed_data
+
+my_file = open("app-secrets.json")
+my_secret = my_file.read()
+SECRETS_DICT = json.loads(secrets)
+my_file.close()
 
 #this is in mph
 bus_speed = 26.4
@@ -42,7 +48,7 @@ def find_time_to_stop(lat1, lng1, lat2, lng2):
     return 2 * time_to_next_stop
 
 def SendNotification(notification):
-    
+    twilio_auth_token = SECRETS_DICT["twilio_auth_token"]
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
