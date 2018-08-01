@@ -41,12 +41,6 @@ def find_time_to_stop(lat1, lng1, lat2, lng2):
     #multiplied by two since our model is ideal conditions
     return 2 * time_to_next_stop
 
-class StopSelectorHandler(webapp2.RequestHandler):
-    def get(self):
-        #self.response.write("Welcome to StopGo!")
-        stop_selector_template = jina_env.get_template('templates/stop-selector.html')
-        self.response.write(stop_selector_template.render())
-
 class MainHandler(webapp2.RequestHandler):
     def get(self):
         main_page_template = jinja_env.get_template('templates/homepage.html')
@@ -79,13 +73,6 @@ class ViewRouteHandler(webapp2.RequestHandler):
         time_to_next_stop = float(int(time_to_next_stop * 10))
         time_to_next_stop /=10
 
-
-
-
-
-
-        send_message()
-
         template_vars = {
             'time_to_next_stop': time_to_next_stop,
         }
@@ -96,10 +83,26 @@ class InformationHandler(webapp2.RequestHandler):
         info_template = jinja_env.get_template('templates/information.html')
         self.response.write(info_template.render())
 
+class NotificationHandler(webapp2.RequestHandler):
+    def get(self):
+        two_minutes_ago = (datetime.datetime.now() - datetime.timedelta(minutes=2))
+        notifications = Notification.query(ndb.AND(Notification.target_time >= two_minutes_ago, Notification.sent == False))
+        for notification in notifications:
+            if SendNotification(notification):
+                notifications.sent = True
+                notifications.put()
+
+class OnRouteHandler(webapp2.RequestHandler):
+    def get(self):
+        on_route_template = jinja_env.get_template('templates/on_route.html')
+        self.response.write(on_route_template.render())
+
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/seed-data', LoadDataHandler),
     ('/create-route', CreateRouteHandler),
     ('/view-route', ViewRouteHandler),
     ('/info', InformationHandler),
+    ('/notifier', NotificationHandler),
+    ('/on-route', OnRouteHandler),
 ], debug=True)
