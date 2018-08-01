@@ -10,6 +10,11 @@ from seed_stops_db import seed_data
 from twilio.rest import Client
 
 
+my_file = open("app-secrets.json")
+my_secret = my_file.read()
+SECRETS_DICT = json.loads(secrets)
+my_file.close()
+
 #this is in mph
 bus_speed = 26.4
 
