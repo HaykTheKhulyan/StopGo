@@ -4,9 +4,6 @@ import jinja2
 from math import sin, cos, sqrt, atan2, radians
 from stop_models import Stop
 from seed_stops_db import seed_data
-from threading import Timer
-import logging
-
 
 #this is in mph
 bus_speed = 26.4
@@ -43,13 +40,6 @@ def find_time_to_stop(lat1, lng1, lat2, lng2):
 
     #multiplied by two since our model is ideal conditions
     return 2 * time_to_next_stop
-
-def hello():
-    print("hello, world")
-
-def send_message():
-    t = Timer(5.0, hello)
-    t.start()
 
 class StopSelectorHandler(webapp2.RequestHandler):
     def get(self):
@@ -88,6 +78,11 @@ class ViewRouteHandler(webapp2.RequestHandler):
 
         time_to_next_stop = float(int(time_to_next_stop * 10))
         time_to_next_stop /=10
+
+
+
+
+
 
         send_message()
 
