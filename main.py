@@ -6,7 +6,7 @@ import datetime
 from math import sin, cos, sqrt, atan2, radians
 from stop_models import Stop
 from notification_models import Notification
-from seed_stops_db import seed_data
+#from seed_stops_db import seed_data
 from twilio.rest import Client
 
 
@@ -53,16 +53,17 @@ def find_time_to_stop(lat1, lng1, lat2, lng2):
 
 def SendNotification(Notification):
     account_sid = SECRETS-DICT['twilio_account_sid']
-    auth_token  = SECRETS-DICT['twilio_auth_token']  
+    auth_token  = SECRETS-DICT['twilio_auth_token']
 
     client = Client(account_sid, auth_token)
 
     message = client.messages.create(
         to="+12136047704",
         from_="+14243583569",
-        body="The %s stop is coming up!" % Notification.stop_name)
+        body= "The stop is coming up!")
 
     print(message.sid)
+    return True
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
