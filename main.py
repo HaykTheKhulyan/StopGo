@@ -3,7 +3,10 @@ import os
 import jinja2
 from math import sin, cos, sqrt, atan2, radians
 from stop_models import Stop
+from notification_models import Notification
 from seed_stops_db import seed_data
+import datetime
+
 
 #this is in mph
 bus_speed = 26.4
@@ -76,8 +79,7 @@ class ViewRouteHandler(webapp2.RequestHandler):
         time_to_next_stop = float(int(time_to_next_stop * 10))
         time_to_next_stop /=10
 
-        #notification = Notification(datetime.datetime.now()+time_to_next_stop)
-        notification = Notification(current_time + time_to_next_stop, false).put()
+        notification = Notification(target_time = datetime.datetime.now() + datetime.timedelta(minutes=time_to_next_stop), stop_name = next_stop, sent = False).put()
 
         template_vars = {
             'time_to_next_stop': time_to_next_stop,
