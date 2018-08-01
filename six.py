@@ -1,1 +1,0 @@
-{SITE_PACKAGES}/six.py
