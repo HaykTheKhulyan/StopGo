@@ -4,8 +4,9 @@ import jinja2
 from math import sin, cos, sqrt, atan2, radians
 from stop_models import Stop
 from seed_stops_db import seed_data
-from threading import Timer
-import logging
+import datetime
+from google.appengine.ext import ndb
+from notification_models import Notification
 
 
 #this is in mph
@@ -44,19 +45,6 @@ def find_time_to_stop(lat1, lng1, lat2, lng2):
     #multiplied by two since our model is ideal conditions
     return 2 * time_to_next_stop
 
-def hello():
-    print("hello, world")
-
-def send_message():
-    t = Timer(5.0, hello)
-    t.start()
-
-class StopSelectorHandler(webapp2.RequestHandler):
-    def get(self):
-        #self.response.write("Welcome to StopGo!")
-        stop_selector_template = jina_env.get_template('templates/stop-selector.html')
-        self.response.write(stop_selector_template.render())
-
 class MainHandler(webapp2.RequestHandler):
     def get(self):
         main_page_template = jinja_env.get_template('templates/homepage.html')
@@ -89,8 +77,6 @@ class ViewRouteHandler(webapp2.RequestHandler):
         time_to_next_stop = float(int(time_to_next_stop * 10))
         time_to_next_stop /=10
 
-        send_message()
-
         template_vars = {
             'time_to_next_stop': time_to_next_stop,
         }
@@ -101,10 +87,20 @@ class InformationHandler(webapp2.RequestHandler):
         info_template = jinja_env.get_template('templates/information.html')
         self.response.write(info_template.render())
 
+class NotificationHandler(webapp2.RequestHandler):
+    def get(self):
+        two_minutes_ago = (datetime.datetime.now() - datetime.timedelta(minutes=2))
+        notifications = Notification.query(ndb.AND(Notification.target_time >= two_minutes_ago, Notification.sent == False))
+        for notification in notifications:
+            if SendNotification(notification):
+                notifications.sent = True
+                notifications.put()
+
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/seed-data', LoadDataHandler),
     ('/create-route', CreateRouteHandler),
     ('/view-route', ViewRouteHandler),
     ('/info', InformationHandler),
+    ('/notifier', NotificationHandler)
 ], debug=True)
