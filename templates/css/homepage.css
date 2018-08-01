@@ -1,3 +1,8 @@
+#s, #p {color: cornflowerblue;}
+#t, #second-o {color:red;}
+#first-o {color: #fa0;}
+#g {color:#3a3;}
+
 h1 a
 {
   display:flex;
@@ -5,15 +10,6 @@ h1 a
   font-family: "Google Sans";
   text-decoration: none;
 }
-
-#s, #p {color: cornflowerblue;}
-#t, #second-o {color:red;}
-#first-o {color: #fa0;}
-#g {color:#3a3;}
-
-  .tilted {
-  -webkit-transform: rotate(-30deg)
-  }
 
 .overview {
   font-size: 35px;
@@ -121,31 +117,3 @@ h1 {display:flex;
 }
 
 body {background-color: ghostwhite;}
-
-img {
-  width: 15%;
-  position: absolute;
-  bottom: 0px;
-  right: 0px;
-}
-
-p {
-  background-color: tomato;
-  font-size: 24px;
-  font-family: serif;
-  padding: 100px;
-  border-radius: 25px;
-  text-align: center;
-  letter-spacing: 5px;
-  border-style: solid;
-  border-width: thick;
-  border-color: red;
-}
-
-form {
-  display: inline;
-}
-h1 {display:flex;
-  font-size: 45px;
-  font-family: "Google Sans";
-}

@@ -17,6 +17,9 @@
     bottom: 0px;
     right: 0px;
   }
+  .tilted {
+  -webkit-transform: rotate(-30deg)
+  }
 
 </style>
 </head>
@@ -77,5 +80,6 @@ window.onclick = function(e) {
       }
   }
 }
+setInterval(() => { document.getElementById('g').classList.toggle('tilted'); }, 500)
 </script>
 </html>
