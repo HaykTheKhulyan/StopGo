@@ -14,3 +14,19 @@ h1
   display:flex;
   font-family: "Google Sans";
 }
+
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: lightblue;
+  color: white;
+  text-align: right;
+  height: 46px;
+}
+
+.logo {
+  width: 10%;
+  bottom: 0;
+}
