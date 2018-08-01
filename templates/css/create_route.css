@@ -34,3 +34,12 @@ h2
   width: 10%;
   bottom: 0;
 }
+
+#border-div {
+  border-radius: 25px;
+  border-color: #fa0;
+  height: 150px;
+  width: 500px;
+  border-style: solid;
+  border-width: 5px;
+}
