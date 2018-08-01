@@ -4,7 +4,10 @@ import jinja2
 import json
 from math import sin, cos, sqrt, atan2, radians
 from stop_models import Stop
+from notification_models import Notification
 from seed_stops_db import seed_data
+import datetime
+
 
 my_file = open("app-secrets.json")
 my_secret = my_file.read()
@@ -47,8 +50,8 @@ def find_time_to_stop(lat1, lng1, lat2, lng2):
     #multiplied by two since our model is ideal conditions
     return 2 * time_to_next_stop
 
-def SendNotification(notification):
-    twilio_auth_token = SECRETS_DICT["twilio_auth_token"]
+def SendNotification(Notification):
+    pass
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
@@ -82,6 +85,8 @@ class ViewRouteHandler(webapp2.RequestHandler):
         time_to_next_stop = float(int(time_to_next_stop * 10))
         time_to_next_stop /=10
 
+        notification = Notification(target_time = datetime.datetime.now() + datetime.timedelta(minutes=time_to_next_stop), stop_name = next_stop, sent = False).put()
+
         template_vars = {
             'time_to_next_stop': time_to_next_stop,
         }
@@ -95,7 +100,7 @@ class InformationHandler(webapp2.RequestHandler):
 class NotificationHandler(webapp2.RequestHandler):
     def get(self):
         two_minutes_ago = (datetime.datetime.now() - datetime.timedelta(minutes=2))
-        notifications = Notification.query(ndb.AND(Notification.target_time >= two_minutes_ago, Notification.sent == False))
+        notifications = Notification.query(ndb.AND(Notification.target_time <= two_minutes_ago, Notification.sent == False))
         for notification in notifications:
             if SendNotification(notification):
                 notifications.sent = True

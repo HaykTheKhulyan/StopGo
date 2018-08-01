@@ -24,7 +24,7 @@
   <div class="footer">
       <img class="logo" src="images/logo.png" alt="Quack Logo">
   </div>
-  
+
   <h1>
     <a href='/'>
       <b id="s">S</b>
@@ -59,13 +59,19 @@
   </h2>
 
     <form action='/view-route' method='get'>
-      <b id='green'>Enter your first stop:</b>
-      <input type="text" name="current_stop"/>
+      <b id='green'>Enter your starting station:</b>
+      <input type="text" name="current_stop" multiple/>
       <br>
-      <b id='green'>Enter your second stop:</b>
-      <input type="text" name="next_stop"/>
+      <b id='green'>Enter your first stop:</b>
+      <input type="text" name="next_stop" multiple/>
       <input type="submit" value="View Trip">
     </form>
+
+  <h3>Your current route:</h3>
+
+  <div id="border-div">
+  </div>
+
 
 <script>
 /* When the user clicks on the button,
