@@ -89,12 +89,6 @@ h1 a
 form {
 display: inline;
 }
-img {
-  width: 15%;
-  position: absolute;
-  bottom: 0px;
-  right: 0px;
-}
 
 h1 {display:flex;
   font-size: 45px;
@@ -121,3 +115,5 @@ h1 {display:flex;
   float: right;
   width: 12%;
 }
+
+body {background-color: ghostwhite;}
