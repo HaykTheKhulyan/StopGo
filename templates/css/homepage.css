@@ -115,3 +115,9 @@ h1 {display:flex;
   width: 10%;
   bottom: 0;
 }
+
+#header_image {
+  position: relative;
+  float: right;
+  width: 12%;
+}

@@ -4,10 +4,6 @@ import jinja2
 from math import sin, cos, sqrt, atan2, radians
 from stop_models import Stop
 from seed_stops_db import seed_data
-import datetime
-from google.appengine.ext import ndb
-from notification_models import Notification
-
 
 #this is in mph
 bus_speed = 26.4
@@ -96,11 +92,17 @@ class NotificationHandler(webapp2.RequestHandler):
                 notifications.sent = True
                 notifications.put()
 
+class OnRouteHandler(webapp2.RequestHandler):
+    def get(self):
+        on_route_template = jinja_env.get_template('templates/on_route.html')
+        self.response.write(on_route_template.render())
+
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/seed-data', LoadDataHandler),
     ('/create-route', CreateRouteHandler),
     ('/view-route', ViewRouteHandler),
     ('/info', InformationHandler),
-    ('/notifier', NotificationHandler)
+    ('/notifier', NotificationHandler),
+    ('/on-route', OnRouteHandler),
 ], debug=True)
