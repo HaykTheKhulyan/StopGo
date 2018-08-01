@@ -8,6 +8,8 @@ from stop_models import Stop
 from notification_models import Notification
 #from seed_stops_db import seed_data
 from twilio.rest import Client
+from google.appengine.ext import ndb
+import logging
 
 
 my_file = open("app-secrets.json")
@@ -15,18 +17,19 @@ my_secret = my_file.read()
 SECRETS_DICT = json.loads(my_secret)
 my_file.close()
 
-#this is in mph
-bus_speed = 26.4
 
 jinja_env = jinja2.Environment(
 loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
 extensions=['jinja2.ext.autoescape'],
 autoescape=True)
 
+stop_name = ""
+
 #returns time in minutes (this is always an underestimate, moreso for longer routes)
 def find_time_to_stop(lat1, lng1, lat2, lng2):
     # approximate radius of earth in km
     R = 6373.0
+    bus_speed = 26.4
 
     lat1 = radians(abs(float(lat1)))
     lng1 = radians(abs(float(lng1)))
@@ -51,19 +54,18 @@ def find_time_to_stop(lat1, lng1, lat2, lng2):
     #multiplied by two since our model is ideal conditions
     return 2 * time_to_next_stop
 
-def SendNotification(Notification):
-    account_sid = SECRETS-DICT['twilio_account_sid']
-    auth_token  = SECRETS-DICT['twilio_auth_token']
+def SendNotification(Notification, myStop):
+    account_sid = SECRETS_DICT['twilio_account_sid']
+    auth_token  = SECRETS_DICT['twilio_auth_token']
 
     client = Client(account_sid, auth_token)
 
     message = client.messages.create(
         to="+12136047704",
         from_="+14243583569",
-        body="The stop is coming up!")
+        body="Your stop at %s is coming up!" % Notification.stop_name)
 
     print(message.sid)
-    return True
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
@@ -77,6 +79,7 @@ class LoadDataHandler(webapp2.RequestHandler):
 class CreateRouteHandler(webapp2.RequestHandler):
     def get(self):
         create_route_template = jinja_env.get_template('templates/create_route.html')
+        logging.error("CreateRouteHandler")
         self.response.write(create_route_template.render(()))
 
 class ViewRouteHandler(webapp2.RequestHandler):
@@ -85,6 +88,8 @@ class ViewRouteHandler(webapp2.RequestHandler):
 
         current_stop = self.request.get('current_stop')
         next_stop = self.request.get('next_stop')
+
+        stop_name = current_stop
 
         current_stop_lat = Stop.query().filter(Stop.stop_name == current_stop).fetch()[0].stop_lat
         current_stop_lon = Stop.query().filter(Stop.stop_name == current_stop).fetch()[0].stop_lon
@@ -111,12 +116,14 @@ class InformationHandler(webapp2.RequestHandler):
 
 class NotificationHandler(webapp2.RequestHandler):
     def get(self):
-        two_minutes_ago = (datetime.datetime.now() - datetime.timedelta(minutes=2))
-        notifications = Notification.query(ndb.AND(Notification.target_time <= two_minutes_ago, Notification.sent == False))
+        logging.info("Cron is working")
+        two_minutes_ago = (datetime.datetime.now() + datetime.timedelta(minutes=2))
+        notifications = Notification.query(Notification.target_time <= datetime.datetime.now()).fetch()
         for notification in notifications:
-            if SendNotification(notification):
-                notifications.sent = True
-                notifications.put()
+            logging.error("Notification sent")
+            SendNotification(notification, stop_name)
+            notifications.sent = True
+            notifications.put()
 
 class OnRouteHandler(webapp2.RequestHandler):
     def get(self):
