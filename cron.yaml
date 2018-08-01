@@ -1,0 +1,4 @@
+cron:
+- description: "stop arrival notification"
+  url: /notifier
+  schedule: every 2 min
