@@ -9,7 +9,6 @@ from notification_models import Notification
 from seed_stops_db import seed_data
 from twilio.rest import Client
 
-
 my_file = open("app-secrets.json")
 my_secret = my_file.read()
 SECRETS_DICT = json.loads(my_secret)
@@ -52,8 +51,8 @@ def find_time_to_stop(lat1, lng1, lat2, lng2):
     return 2 * time_to_next_stop
 
 def SendNotification(Notification):
-    account_sid = SECRETS-DICT['twilio_account_sid'] #"AC2a6cae5a5d3b26c7fbbb57fc327469f4"
-    auth_token  = SECRETS-DICT['twilio_auth_token']  #"d81a3d84605d75cef24f70649577a4bb"
+    account_sid = SECRETS-DICT['twilio_account_sid']
+    auth_token  = SECRETS-DICT['twilio_auth_token']
 
     client = Client(account_sid, auth_token)
 
