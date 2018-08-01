@@ -60,7 +60,7 @@ def SendNotification(Notification):
     message = client.messages.create(
         to="+12136047704",
         from_="+14243583569",
-        body= "The stop is coming up!")
+        body="The stop is coming up!")
 
     print(message.sid)
     return True
