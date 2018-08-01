@@ -7,15 +7,25 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="css/homepage.css"/>
 <link rel="stylesheet" href="css/information.css"/>
+
 <style>
+
   form {
   display: inline;
   }
-  img {
-    width: 15%;
+
+  #logo {
     position: absolute;
     bottom: 0px;
     right: 0px;
+  }
+
+  #column {
+    width: 100px;
+  }
+
+  h2, p {
+    text-align: center;
   }
 
 </style>
@@ -24,7 +34,7 @@
 <body>
 
   <div class="footer">
-      <img class="logo" src="images/logo.png" alt="Quack Logo">
+      <img class="logo" src="images/logo.png" alt="Quack Logo" id="logo">
   </div>
 
   <h1>
@@ -56,10 +66,30 @@
     <b id='red'>What is Quack?</b>
   </h1>
 
-  <div class="duckpics">
-    <img src="images/RD.png" id="header_image"/>
-    <img src="images/Carl.png" id="header_image"/>
-    <img src="images/Victor.png" id="header_image"/>
+  <div class="row">
+  <div class="column">
+    <img src="images/Victor.png" alt="Victor" style="width:200px;float:left">
+    <h2>Meet Victor</h2>
+    <p>
+      I was adopted by Hayk Khulyan. He will be attending _________. He loves to ____ and ____.
+    </p>
+  </div>
+  <div class="column">
+    <img src="images/RD.png" alt="RD" style="width:230px;float:left">
+    <h2>Meet R.D.</h2>
+    <p>
+      I was adopted by Ellen Kim. She will be attending the University of
+      California, Irvine. Zot Zot! Ellen loves to swim and watch Korean variety shows.
+    </p>
+  </div>
+  <div class="column">
+    <img src="images/Carl.png" alt="Carl" style="width:210px;float:left">
+    <h2>Meet Carl</h2>
+    <p>
+      I was adopted by Kendall Lane. She will be attending Cornell University.
+      Go Big Red! Kendall loves to watch TV and play lacrosse.
+    </p>
+  </div>
   </div>
 
 <script>

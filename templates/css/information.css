@@ -3,7 +3,7 @@
 
 h1
 {
-  display:flex;
+  display: flex;
   font-size: 45px;
   font-family: "Google Sans";
 }
@@ -21,4 +21,21 @@ h1
 .logo {
   width: 10%;
   bottom: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.column {
+    float: left;
+    width: 33.33%;
+    padding: 5px;
+}
+
+/* Clearfix (clear floats) */
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
 }
