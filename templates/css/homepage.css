@@ -1,3 +1,8 @@
+#s, #p {color: cornflowerblue;}
+#t, #second-o {color:red;}
+#first-o {color: #fa0;}
+#g {color:#3a3;}
+
 h1 a
 {
   display:flex;
@@ -5,11 +10,6 @@ h1 a
   font-family: "Google Sans";
   text-decoration: none;
 }
-
-#s, #p {color: cornflowerblue;}
-#t, #second-o {color:red;}
-#first-o {color: #fa0;}
-#g {color:#3a3; -webkit-transform: rotate(-20deg);}
 
 .overview {
   font-size: 35px;

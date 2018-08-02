@@ -27,6 +27,9 @@
   h2, p {
     text-align: center;
   }
+  .tilted {
+  -webkit-transform: rotate(-30deg)
+  }
 
 </style>
 </head>
@@ -71,7 +74,8 @@
     <img src="images/Victor.png" alt="Victor" style="width:200px;float:left">
     <h2>Meet Victor</h2>
     <p>
-      I was adopted by Hayk Khulyan. He will be attending _________. He loves to ____ and ____.
+      I was adopted by Hayk Khulyan. He will be attending the University of California,
+      Riverside. Hayk loves to program, code, and hike.
     </p>
   </div>
   <div class="column">
@@ -108,5 +112,6 @@ window.onclick = function(e) {
       }
   }
 }
+setInterval(() => { document.getElementById('g').classList.toggle('tilted'); }, 500)
 </script>
 </html>
