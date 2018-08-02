@@ -9,11 +9,7 @@ from notification_models import Notification
 #from seed_stops_db import seed_data
 from twilio.rest import Client
 from google.appengine.ext import ndb
-<<<<<<< HEAD
 import logging
-
-=======
->>>>>>> 9e986b25fe1583ddac4f5cc2dc344e663561bf94
 
 my_file = open("app-secrets.json")
 my_secret = my_file.read()
@@ -57,11 +53,7 @@ def find_time_to_stop(lat1, lng1, lat2, lng2):
     #multiplied by two since our model is ideal conditions
     return 2 * time_to_next_stop
 
-<<<<<<< HEAD
 def SendNotification(Notification, myStop):
-=======
-def SendNotification(Notification):
->>>>>>> 9e986b25fe1583ddac4f5cc2dc344e663561bf94
     account_sid = SECRETS_DICT['twilio_account_sid']
     auth_token  = SECRETS_DICT['twilio_auth_token']
 
